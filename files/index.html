@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <style>
+        @font-face {
+            font-family: my-font;
+            src: url("{{{fontSource}}}") format("woff2-variations");
+            font-display: swap;
+        }
+
+        body {
+            font-family: my-font, serif;
+            font-feature-settings: "ss02";
+            width: 1080px;
+            height: 1080px;
+            padding: 0;
+            margin: 0;
+            direction: ltr;
+        }
+
+        .main {
+            position: relative;
+        }
+
+        .t-img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .logo {
+            position: absolute;
+            left: 467px;
+            top: 105px;
+            width: 148px;
+            height: 128px;
+            object-fit: contain;
+        }
+
+        .price {
+            position: absolute;
+            top: 332px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 64px;
+            color: #004566;
+            font-variation-settings: "wght" 700;
+            direction: rtl;
+        }
+
+        .percent {
+            position: absolute;
+            top: 480px;
+            left: 550px;
+            height: 120px;
+            width: 272px;
+            white-space: nowrap;
+            font-size: 64px;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-variation-settings: "wght" 500;
+            direction: rtl;
+        }
+
+        .duration {
+            position: absolute;
+            top: 480px;
+            left: 260px;
+            height: 120px;
+            width: 290px;
+            white-space: nowrap;
+            font-size: 40px;
+            color: #004566;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-variation-settings: "wght" 500;
+            direction: rtl;
+        }
+
+        .project {
+            position: absolute;
+            top: 640px;
+            left: 551px;
+            width: 374px;
+            font-size: 24px;
+            direction: rtl;
+            font-variation-settings: "wght" 300;
+            color: black;
+            line-height: 36px;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .name {
+            position: absolute;
+            top: 640px;
+            left: 157px;
+            width: 354px;
+            font-size: 24px;
+            direction: rtl;
+            font-variation-settings: "wght" 300;
+            color: black;
+            line-height: 36px;
+        }
+
+        .funder {
+            position: absolute;
+            top: 736px;
+            left: 157px;
+            width: 768px;
+            height: 32px;
+            font-size: 24px;
+            direction: rtl;
+            font-variation-settings: "wght" 300;
+            color: black;
+        }
+
+        span {
+            font-variation-settings: "wght" 500;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <img class="t-img" src="{{{templateSource}}}"/>
+    <img class="logo" src="{{{logoSource}}}"/>
+    <div class="price">{{{minimum_amount}}} ریال</div>
+    <div class="percent">{{{expected_profit}}}٪</div>
+    <div class="duration">{{{duration_month}}} ماهه</div>
+    <div class="project">
+        <span>پروژه: </span>
+        {{{title}}}
+    </div>
+    <div class="name">
+        <span>سکو: </span>
+        {{{platform}}}
+    </div>
+    <div class="funder">
+        <span>سرمایه پذیر: </span>
+        {{{company}}}
+    </div>
+</div>
+</body>
+</html>
