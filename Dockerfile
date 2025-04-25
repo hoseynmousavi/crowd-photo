@@ -1,46 +1,33 @@
-# Stage 1: Build Stage
-FROM node:23-alpine AS build
 
-# Install build dependencies and tools
+# Step 1: Use an official Node.js runtime as a parent image
+FROM node:23-alpine
+
+# Step 2: Install Python, build tools, and other dependencies for node-gyp
 RUN apk add --no-cache \
     python3 \
     make \
     g++ \
     bash
 
-# Set the working directory for your application inside the container
+# Step 3: Set the working directory for your application inside the container
 WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json (if available) to install dependencies
-COPY package*.json ./
-
-# Install the dependencies, excluding dev dependencies
-RUN npm install --omit=dev
-
-# Install pm2 globally in the build stage
+# Step 4: Install pm2 globally
 RUN npm install pm2 -g
 
-# Copy the application source code
+# Step 5: Copy the package.json and package-lock.json (if available) into the working directory
+COPY package*.json ./
+
+# Step 6: Install the dependencies defined in package.json
+RUN npm install --omit=dev
+
+# Step 7: Copy the rest of the application code into the working directory
 COPY . .
 
-# Stage 2: Production Stage
-FROM node:23-alpine
-
-# Set the working directory for your application
-WORKDIR /usr/src/app
-
-# Copy the node_modules and pm2 from the build stage to the production image
-COPY --from=build /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/node_modules/pm2 ./node_modules/pm2
-
-# Copy the application source code
-COPY --from=build /usr/src/app ./
-
-# Expose the port your application will run on
+# Step 8: Expose the port your application will run on (adjust if needed)
 EXPOSE 6500
 
-# Set the environment variable for production mode
+# Step 9: Set the environment variable for production mode
 ENV NODE_ENV=production
 
-# Command to run the application with pm2-runtime
+# Step 10: Command to run the application
 CMD ["pm2-runtime", "start", "src/server.js"]
