@@ -36,7 +36,7 @@ server.route("/")
                     res.end(image, "binary")
                 }
                 catch (e) {
-                    res.status(500).send({message: e?.message ?? "i just shut the fuck up."})
+                    res.status(500).send({message: e?.message ?? "i just shut the fuck up.", error: e})
                     console.error(e?.message, e)
                 }
             }
