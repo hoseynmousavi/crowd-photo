@@ -62,8 +62,6 @@ server.route("/")
                 //     html,
                 //     content: { templateSource, logoSource, fontSource, platform, title, expected_profit, duration_month, company, minimum_amount: showNumber(minimum_amount.toString()) },
                 // })
-                res.writeHead(200, { "Content-Type": "image/png" })
-                res.end(image, "binary")
             }
             else {
                 res.status(400).send({ message: "no file for platform!" })
