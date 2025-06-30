@@ -1,5 +1,5 @@
 # Stage 1: Build Stage
-FROM node:23-alpine AS build
+FROM oven/bun:alpine AS build
 
 # Install build dependencies
 RUN apk add --no-cache \
@@ -12,12 +12,12 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install --omit=dev
+RUN bun install
 
 COPY . .
 
 # Stage 2: Production Stage
-FROM node:23-alpine
+FROM oven/bun:alpine
 
 # Install runtime dependencies
 RUN apk add --no-cache \
@@ -34,9 +34,7 @@ WORKDIR /usr/src/app
 COPY --from=build /usr/src/app ./
 
 # Install pm2 globally
-RUN npm install pm2 -g
-
-ENV NODE_ENV=production
+RUN bun install pm2 -g
 
 # Set Puppeteer to use Chromium installed via apk
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
