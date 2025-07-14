@@ -137,7 +137,7 @@
     <img class="logo" src="{{{logoSource}}}"/>
     <div class="name">{{{platform}}}</div>
 
-    <div class="percent-number">٪{{{expected_profit}}}</div>
+    <div class="percent-number" id="percent-number">٪{{{expected_profit}}}</div>
     <div class="percent-word">پیـش بیـنی سـود</div>
 
     <img class="medal" src="{{{medalSource}}}"/>
@@ -146,5 +146,11 @@
     <div class="duration-number">{{{duration_month}}}</div>
     <div class="duration-word">مـاه</div>
 </div>
+<script>
+    const percentNumber = document.getElementById("percent-number")
+    if (percentNumber.innerText.length > 3) {
+        percentNumber.style.fontSize = "66px"
+    }
+</script>
 </body>
 </html>
